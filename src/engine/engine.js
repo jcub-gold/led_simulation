@@ -39,23 +39,25 @@ export class Engine {
     const { dx, dy } = this.pendingMove;
     if (dx === 0 && dy === 0) return;
 
-    const nx = this.state.camera.x + dx;
-    const ny = this.state.camera.y + dy;
+    const prevX = this.state.camera.x;
+    const prevY = this.state.camera.y;
+    const nx = prevX + dx;
+    const ny = prevY + dy;
 
     if (!this.maze.isWall(nx, ny)) {
       this.state.camera.x = nx;
       this.state.camera.y = ny;
 
       if (
-        (nx <= 4 && this.state.player.x <= 4) ||
-        (nx >= 60 && this.state.player.x >= 60)
+        (nx <= 4 && prevX <= 4) ||
+        (nx >= 60 && prevX >= 60)
       ) {
         this.state.player.x += dx;
       }
 
       if (
-        (ny <= 4 && this.state.player.y <= 4) ||
-        (ny >= 60 && this.state.player.y >= 60)
+        (ny <= 4 && prevY <= 4) ||
+        (ny >= 60 && prevY >= 60)
       ) {
         this.state.player.y += dy;
       }

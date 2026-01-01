@@ -170,7 +170,7 @@ export class LedBoardView {
         const cx = startX - col * LED_STEP;
         const cy = startY + row * LED_STEP;
 
-        const on = frame[row][col] === 1;
+        const on = frame[row][LED_GRID - 1 - col] === 1;
         if (on) this.drawLedOn(cx, cy, r);
         else this.drawLedOff(cx, cy, r);
       }
