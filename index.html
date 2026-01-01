@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LED Board Simulation</title>
+    <style>
+      body {
+        margin: 0;
+        background: #f5f1ea;
+        font-family: "Georgia", "Times New Roman", serif;
+        color: #2a1f1a;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+      }
+
+      .wrap {
+        display: grid;
+        gap: 16px;
+        text-align: center;
+      }
+
+      canvas {
+        border-radius: 18px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+        background: #eee6dd;
+      }
+
+      .hint {
+        font-size: 14px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <canvas id="board" width="720" height="720"></canvas>
+      <div class="hint">Use arrow keys to move</div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
