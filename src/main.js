@@ -27,3 +27,49 @@ function loop(now) {
 }
 
 requestAnimationFrame(loop);
+
+const modal = document.getElementById("readme-modal");
+const openBtn = document.getElementById("readme-open");
+const closeBtn = document.getElementById("readme-close");
+const tabButtons = Array.from(document.querySelectorAll(".modal-tab"));
+const panels = Array.from(document.querySelectorAll(".modal-panel"));
+
+function setModalOpen(open) {
+  if (!modal) return;
+  modal.style.display = open ? "flex" : "none";
+  modal.setAttribute("aria-hidden", open ? "false" : "true");
+}
+
+function setActiveTab(tabKey) {
+  tabButtons.forEach(btn => {
+    const active = btn.dataset.tab === tabKey;
+    btn.dataset.active = active ? "true" : "false";
+    btn.setAttribute("aria-selected", active ? "true" : "false");
+  });
+  panels.forEach(panel => {
+    const active = panel.dataset.panel === tabKey;
+    panel.dataset.active = active ? "true" : "false";
+  });
+}
+
+if (openBtn && closeBtn && modal) {
+  setModalOpen(true);
+
+  openBtn.addEventListener("click", () => {
+    setModalOpen(true);
+  });
+
+  closeBtn.addEventListener("click", () => {
+    setModalOpen(false);
+  });
+
+  modal.addEventListener("click", e => {
+    if (e.target === modal) setModalOpen(false);
+  });
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      setActiveTab(btn.dataset.tab);
+    });
+  });
+}

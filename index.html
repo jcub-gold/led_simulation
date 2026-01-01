@@ -32,12 +32,120 @@
         letter-spacing: 0.06em;
         text-transform: uppercase;
       }
+
+      .readme-button {
+        position: fixed;
+        top: 16px;
+        right: 20px;
+        font-family: "Times New Roman", serif;
+        font-size: 16px;
+        color: #2a1f1a;
+        text-decoration: underline;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 12, 8, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+
+      .modal {
+        width: min(720px, 92vw);
+        background: #faf7f1;
+        border: 2px solid #2a1f1a;
+        border-radius: 10px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+      }
+
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+        border-bottom: 2px solid #2a1f1a;
+        background: #efe6db;
+      }
+
+      .modal-tabs {
+        display: flex;
+        gap: 8px;
+      }
+
+      .modal-tab {
+        font-family: "Times New Roman", serif;
+        font-size: 16px;
+        background: none;
+        border: 1px solid #2a1f1a;
+        padding: 6px 10px;
+        cursor: pointer;
+      }
+
+      .modal-tab[data-active="true"] {
+        background: #2a1f1a;
+        color: #faf7f1;
+      }
+
+      .modal-close {
+        font-family: "Times New Roman", serif;
+        font-size: 16px;
+        background: none;
+        border: 1px solid #2a1f1a;
+        padding: 6px 10px;
+        cursor: pointer;
+      }
+
+      .modal-body {
+        padding: 18px 20px 22px;
+        min-height: 200px;
+      }
+
+      .modal-panel {
+        display: none;
+      }
+
+      .modal-panel[data-active="true"] {
+        display: block;
+      }
     </style>
   </head>
   <body>
+    <button class="readme-button" id="readme-open">ReadMe</button>
     <div class="wrap">
       <canvas id="board" width="720" height="720"></canvas>
       <div class="hint">Use arrow keys to move</div>
+    </div>
+    <div class="modal-backdrop" id="readme-modal" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="readme-title">
+        <div class="modal-header">
+          <div class="modal-tabs" role="tablist">
+            <button class="modal-tab" data-tab="about" data-active="true" role="tab" aria-selected="true">
+              About This Project
+            </button>
+            <button class="modal-tab" data-tab="how" data-active="false" role="tab" aria-selected="false">
+              How To Play
+            </button>
+          </div>
+          <button class="modal-close" id="readme-close" aria-label="Close ReadMe">Close</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-panel" data-panel="about" data-active="true">
+            <h2 id="readme-title">About This Project</h2>
+            <p>...</p>
+          </div>
+          <div class="modal-panel" data-panel="how" data-active="false">
+            <h2>How To Play</h2>
+            <p>...</p>
+          </div>
+        </div>
+      </div>
     </div>
     <script type="module" src="./src/main.js"></script>
   </body>
