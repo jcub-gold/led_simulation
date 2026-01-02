@@ -125,6 +125,43 @@
         border: 1px solid #2a1f1a;
         background: #fff;
       }
+
+      .about-content {
+        height: 100%;
+        overflow: auto;
+        padding-right: 6px;
+      }
+
+      .about-content p {
+        font-size: 20px;
+        line-height: 1.6;
+        margin: 0 0 18px;
+      }
+
+      .about-content a {
+        color: #0a4ea3;
+      }
+
+      .about-images {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+        margin-top: 8px;
+      }
+
+      .about-images img {
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid #c7b6a7;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+        display: block;
+      }
+
+      @media (max-width: 640px) {
+        .about-content p {
+          font-size: 18px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -148,11 +185,32 @@
         </div>
         <div class="modal-body">
           <div class="modal-panel" data-panel="about" data-active="true">
-            <iframe
-              class="pdf-frame"
-              title="About This Project PDF"
-              src="about.pdf"
-            ></iframe>
+            <div class="about-content">
+              <p>
+                This is a simulation of my 8x8 LED board built for
+                <em>ENGR 40M: An Intro to Making: What Is EE?</em>, taught by
+                <a href="https://profiles.stanford.edu/mark-horowitz" target="_blank" rel="noreferrer">Mark Horowitz</a>.
+                The core concept of the project was
+                <strong>multiplexing</strong>&mdash;controlling many LEDs by rapidly switching shared signals
+                so they appear simultaneously.
+              </p>
+              <p>
+                For the creative portion, we were challenged to build a game that relied entirely on
+                multiplexing within the constraint of just 64 pixels. I designed a maze game in which a
+                blinking maze runner must navigate from the top-left to the bottom-right of a hidden 64x64 maze.
+                The player can only see the 8x8 window centered on their position, trading off memory
+                for exploration as they explore via a joystick.
+              </p>
+              <p>
+                The primary challenge was Arduino memory. To fit the maze, I encoded it bitwise and
+                implemented all navigation logic using bit shifting.
+                <a href="https://github.com/jcub-gold/maze/blob/main/maze.ino">Find the original .ino file here.</a>
+              </p>
+              <div class="about-images">
+                <img src="images/led_board_off.jpg" alt="LED board setup with joystick and wiring" loading="lazy" />
+                <img src="images/led_board_on.jpg" alt="Close-up of the LED board and controller" loading="lazy" />
+              </div>
+            </div>
           </div>
           <div class="modal-panel" data-panel="how" data-active="false">
             <iframe
