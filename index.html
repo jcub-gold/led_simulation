@@ -113,6 +113,7 @@
 
       .modal-panel {
         display: none;
+        height: 100%;
       }
 
       .modal-panel[data-active="true"] {
@@ -172,19 +173,16 @@
     </div>
     <div class="modal-backdrop" id="readme-modal" aria-hidden="true">
       <div class="modal" role="dialog" aria-modal="true" aria-labelledby="readme-title">
-        <div class="modal-header">
-          <div class="modal-tabs" role="tablist">
-            <button class="modal-tab" data-tab="about" data-active="true" role="tab" aria-selected="true">
-              About This Project
-            </button>
-            <button class="modal-tab" data-tab="how" data-active="false" role="tab" aria-selected="false">
-              How To Play
-            </button>
+          <div class="modal-header">
+            <div class="modal-tabs" role="tablist">
+              <button class="modal-tab" data-tab="about" data-active="true" role="tab" aria-selected="true">
+                About This Project
+              </button>
+            </div>
+            <button class="modal-close" id="readme-close" aria-label="Close ReadMe">Close</button>
           </div>
-          <button class="modal-close" id="readme-close" aria-label="Close ReadMe">Close</button>
-        </div>
-        <div class="modal-body">
-          <div class="modal-panel" data-panel="about" data-active="true">
+          <div class="modal-body">
+            <div class="modal-panel" data-panel="about" data-active="true">
             <div class="about-content">
               <p>
                 This is a simulation of my 8x8 LED board built for
@@ -211,15 +209,8 @@
                 <img src="images/led_board_on.jpg" alt="Close-up of the LED board and controller" loading="lazy" />
               </div>
             </div>
+            </div>
           </div>
-          <div class="modal-panel" data-panel="how" data-active="false">
-            <iframe
-              class="pdf-frame"
-              title="How To Play PDF"
-              src="how-to-play.pdf"
-            ></iframe>
-          </div>
-        </div>
       </div>
     </div>
     <script type="module" src="./src/main.js"></script>
