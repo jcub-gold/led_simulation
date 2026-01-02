@@ -158,6 +158,23 @@
         display: block;
       }
 
+      .js-error {
+        position: fixed;
+        left: 16px;
+        bottom: 16px;
+        max-width: min(520px, 92vw);
+        background: #fff4f0;
+        border: 1px solid #a23a2f;
+        color: #2a1f1a;
+        font-family: "Georgia", "Times New Roman", serif;
+        font-size: 14px;
+        line-height: 1.4;
+        padding: 10px 12px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+        display: none;
+        z-index: 20;
+      }
+
       @media (max-width: 640px) {
         .about-content p {
           font-size: 18px;
@@ -213,11 +230,37 @@
           </div>
       </div>
     </div>
+    <div class="js-error" id="js-error" role="alert"></div>
     <script type="module">
-      window.addEventListener("DOMContentLoaded", async () => {
-        const { init } = await import("./src/main.js");
-        init();
+      const errorBox = document.getElementById("js-error");
+      const showError = error => {
+        if (!errorBox) return;
+        const message = error?.message || String(error);
+        errorBox.textContent = `JavaScript failed to start: ${message}`;
+        errorBox.style.display = "block";
+      };
+
+      window.addEventListener("error", event => {
+        showError(event.error || event.message);
       });
+      window.addEventListener("unhandledrejection", event => {
+        showError(event.reason);
+      });
+
+      const boot = async () => {
+        try {
+          const { init } = await import("./src/main.js");
+          init();
+        } catch (error) {
+          showError(error);
+        }
+      };
+
+      if (document.readyState === "loading") {
+        window.addEventListener("DOMContentLoaded", boot, { once: true });
+      } else {
+        boot();
+      }
     </script>
   </body>
 </html>
