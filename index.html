@@ -213,6 +213,11 @@
           </div>
       </div>
     </div>
-    <script type="module" src="./src/main.js"></script>
+    <script type="module">
+      window.addEventListener("DOMContentLoaded", async () => {
+        const { init } = await import("./src/main.js");
+        init();
+      });
+    </script>
   </body>
 </html>

@@ -5,7 +5,7 @@ import { LedBoardView } from "./render/LedBoardView.js";
 
 import { mazeData } from "./mazeData.js"; // your maze array
 
-function init() {
+export function init() {
   const maze = new Maze(mazeData);
   const engine = new Engine(maze);
   const input = new KeyboardInput();
@@ -73,10 +73,4 @@ function init() {
       });
     });
   }
-}
-
-if (document.readyState === "loading") {
-  window.addEventListener("DOMContentLoaded", init);
-} else {
-  init();
 }
