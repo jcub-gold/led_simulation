@@ -1,5 +1,5 @@
-import { Engine } from "./engine/Engine.js";
-import { Maze } from "./engine/Maze.js";
+import { Engine } from "./engine/engine.js";
+import { Maze } from "./engine/maze.js";
 import { KeyboardInput } from "./input/KeyboardInput.js";
 import { LedBoardView } from "./render/LedBoardView.js";
 
